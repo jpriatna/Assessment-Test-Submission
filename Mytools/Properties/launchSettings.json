@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Mytools": {
+      "commandName": "Project",
+      "commandLineArgs": "G:\\Blazor\\CLITools\\filelog\\data.log -t json"
+    }
+  }
+}
