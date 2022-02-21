@@ -2,7 +2,7 @@
   "profiles": {
     "Mytools": {
       "commandName": "Project",
-      "commandLineArgs": "G:\\Blazor\\CLITools\\filelog\\data.log -t json"
+      "commandLineArgs": "G:\\Blazor\\CLITools\\filelog\\message.log -o G:\\Blazor\\CLITools\\filelog\\desfile\\message.json"
     }
   }
 }

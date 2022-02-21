@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
-using System.Text.Json;
-
 namespace Mytools
 {
     class Program
@@ -28,26 +23,26 @@ namespace Mytools
             cmd.AddOption(tag);
             cmd.AddOption(output);
 
-            cmd.Handler = CommandHandler.Create<string, string, string>(ShowOutput);
+            cmd.Handler = CommandHandler.Create<string, string, string>(Output);
 
             return cmd.Invoke(args);
         }
 
-        static void ShowOutput(string input, string tag, string output)
+        static void Output(string input, string tag, string output)
         {
             string message;
             if (output != null && output != "")
             {
                 message = SetOutput(input, tag, output);
             }
-            if(tag != "" && tag != null)
+            else if(tag != "" && tag != null)
             {
                 message = SetFormatFile(input, tag);
             }
             else
             {
                 var path = Path.ChangeExtension(input, ".txt");
-                File.Create(path);
+                File.Move(input, path);
                 message = "Success";
             }
             Console.WriteLine($"Result : {message}\x00B0");
@@ -57,10 +52,10 @@ namespace Mytools
         {
             try
             {
-                if (tag != "" || tag != null)
+                if (tag != "" && tag != null)
                 {
                     var path = Path.ChangeExtension(output, "." + tag);
-                    File.Create(path);
+                    File.Copy(input, path, true);
                 }
                 else
                 {
@@ -81,7 +76,7 @@ namespace Mytools
                 if (tag != "" || tag != null)
                 {
                     var path = Path.ChangeExtension(input, "." + tag);
-                    File.Create(path);
+                    File.Move(input, path);
                 }
                 return ("Success");
             }
