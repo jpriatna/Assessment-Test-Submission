@@ -14,7 +14,6 @@ namespace Mytools
             var tag = new Option<string>("--tag", "Format File");
             tag.AddAlias("-t");
 
-
             var output = new Option<string>("--output", "output file change destination directory and filename");
             output.AddAlias("-o");
 
@@ -45,7 +44,7 @@ namespace Mytools
                 File.Move(input, path);
                 message = "Success";
             }
-            Console.WriteLine($"Result : {message}\x00B0");
+            Console.WriteLine($"Result : {message}");
         }
 
         static string SetOutput(string input, string tag, string output)
